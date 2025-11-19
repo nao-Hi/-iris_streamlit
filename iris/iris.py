@@ -3,11 +3,22 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import pickle
+import os
+
+
+# 現在のファイル(iris.py)のあるディレクトリパスを取得
+base_dir = os.path.dirname(os.path.abspath(__file__))
+# 結合して正しいパスを作る
+model_path = os.path.join(base_dir, 'models', 'model_iris.pkl')
+
+with open(model_path, 'rb') as f:
+    clf = pickle.load(f)
+
 
 # 1. 保存されたモデルを読み込む
 # 'rb'は読み込みモードを意味します（binary read mode）
-with open('models/model_iris.pkl', 'rb') as f:
-    clf = pickle.load(f)
+# with open('models/model_iris.pkl', 'rb') as f:
+    # clf = pickle.load(f)
 
 
 # 2. Streamlitアプリの設定
